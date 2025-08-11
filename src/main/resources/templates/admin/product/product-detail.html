@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Dashboard - SB Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet"/>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../../static/css/style.css">
+
+
+</head>
+<body class="sb-nav-fixed">
+<div th:replace="admin/layout/header :: header"></div>
+<div id="layoutSidenav">
+    <div th:replace="admin/layout/sidebar :: sidebar"></div>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">BOOK-DETAIL</h1>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item active">Detail</li>
+                </ol>
+                <div class="d-flex">
+                    <div class="card col col-8" >
+                        <div class="card-header">
+                            Product information
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><p>ID: <b th:text="${product.get().id}"></b></p></li>
+                            <li class="list-group-item"><p>Name: <b th:text="${product.get().name}"></b></p></li>
+                            <li class="list-group-item"><p >Price: <b th:text="${product.get().price}"></b></p> </li>
+                            <li class="list-group-item"><p>Quantity: <b th:text="${product.get().quantity}"></b></p></li>
+                            <li class="list-group-item"><p>Description: <b th:text="${product.get().description}"></b></p></li>
+                            <li class="list-group-item"><p>Author: <b th:text="${product.get().author}"></b></p></li>
+                            <li class="list-group-item"><p>Category: <b th:text="${product.get().category}"></b></p></li>
+                            <li class="list-group-item"><p>Sold: <b th:text="${product.get().sold}"></b></p></li>
+                        </ul>
+
+                    </div>
+
+                    <div class="card col col-4" style="margin-left:20px;border:none">
+                        <img style="border:none;width: 100%; height:auto; object-fit: cover;" th:src="@{'/static/file-upload/' + ${product.get().image}}" alt="" id="avatarPreview">
+                    </div>
+                </div>
+                <a href="/admin/product" class="btn btn-success" style="margin-top:20px; ">Back</a>
+            </div>
+        </main>
+        <div th:replace="admin/layout/footer :: footer"></div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+<script src="../../../static/js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script src="../../../static/js/chart-area-demo.js"></script>
+<script src="../../../static/js/chart-bar-demo.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
+<script src="../../../static/js/datatables-simple-demo.js"></script>
+</body>
+</html>
