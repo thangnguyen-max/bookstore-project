@@ -76,8 +76,8 @@ mvn spring-boot:run
 - Ứng dụng chạy tại:
 👉 http://localhost:8080
 
-🧑‍💻 Chức năng chính 
-## 👤 Người dùng:
+ ##🧑‍💻 Chức năng chính 
+ 👤 Người dùng:
 
 - Đăng ký, đăng nhập , đăng xuất(Spring Security)
 
@@ -93,7 +93,7 @@ mvn spring-boot:run
 
 - Xem profile người dùng
 
-## 🔑 Admin:
+ 🔑 Admin:
 
 - Quản lý sách (CRUD)
 
