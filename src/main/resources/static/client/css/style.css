@@ -239,6 +239,13 @@
         margin-top: 97px !important;
     }
 }
+
+@media (min-width: 1200px) {
+    .custom-col-xl-2-5 {
+        flex: 0 0 auto;
+        width: 20.833333%; /* 2.5 / 12 * 100% */
+    }
+}
 /*** Hero Header end ***/
 
 

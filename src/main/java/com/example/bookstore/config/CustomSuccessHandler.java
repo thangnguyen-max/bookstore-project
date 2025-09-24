@@ -1,6 +1,8 @@
 package com.example.bookstore.config;
 
 
+import com.example.bookstore.domain.User;
+import com.example.bookstore.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,6 +24,12 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
+    private final UserService userService;
+
+    public CustomSuccessHandler(UserService userService) {
+        this.userService = userService;
+    }
+
     protected String determineTargetUrl(final Authentication authentication) {
 
         Map<String, String> roleTargetUrlMap = new HashMap<>();
@@ -39,12 +47,22 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
         throw new IllegalStateException();
     }
 
-    protected void clearAuthenticationAttributes(HttpServletRequest request) {
+    protected void clearAuthenticationAttributes(HttpServletRequest request,  Authentication authentication) {
         HttpSession session = request.getSession(false);
         if (session == null) {
             return;
         }
         session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
+        String email = authentication.getName();
+        User user = this.userService.getUserByEmail(email);
+        if(user != null) {
+            session.setAttribute("name", user.getFullName());
+            session.setAttribute("avatar", user.getAvatar());
+            session.setAttribute("id", user.getId());
+            session.setAttribute("email", user.getEmail());
+            int sum = (user.getCart() != null) ? user.getCart().getSum() : 0;
+            session.setAttribute("sum", sum);
+        }
     }
 
 
@@ -53,11 +71,13 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
 
         String targetUrl = determineTargetUrl(authentication);
 
+        clearAuthenticationAttributes(request, authentication);
+
         if (response.isCommitted()) {
             return;
         }
 
         redirectStrategy.sendRedirect(request, response, targetUrl);
-        clearAuthenticationAttributes(request);
+
     }
 }

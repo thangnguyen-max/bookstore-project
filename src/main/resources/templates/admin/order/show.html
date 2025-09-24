@@ -27,10 +27,43 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Dashboard</h1>
+                <h1 class="mt-4">TABLE ORDER</h1>
                 <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Dashboard</li>
+                    <li class="breadcrumb-item active">All order</li>
                 </ol>
+                <div class="col col-10 d-flex justify-content-center">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Total price</th>
+                            <th scope="col">User</th>
+                            <th scope="col">Order date</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="order : ${orders}">
+                            <td th:text="${order.id}"></td>
+                            <td th:text="${order.totalPrice}"></td>
+                            <td th:text="${order.user.fullName}"></td>
+                            <td th:text="${order.orderDate}"></td>
+                            <td th:text = "${order.status}"></td>
+                            <td><a th:href="@{'/admin/order/' + ${order.id}}" class="btn"><img
+                                    src="../../../static/images/view.png"
+                                    height="24" width="24"/></a>
+                                <a th:href="@{'/admin/order/update/' + ${order.id}}" class="btn"><img
+                                        src="../../../static/images/edit.png"
+                                        height="24" width="24"/></a>
+                                <a th:href="@{'/admin/order/delete/' + ${order.id}}" class="btn"><img
+                                        src="../../../static/images/trash.png"
+                                        height="24" width="24"/></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </main>
         <div th:replace="admin/layout/footer :: footer"></div>

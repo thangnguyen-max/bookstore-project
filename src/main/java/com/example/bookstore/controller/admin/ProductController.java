@@ -74,7 +74,7 @@ public class ProductController {
     public String getProductDetailPage(Model model, @PathVariable long id) {
         Optional<Product> product = this.productService.getProductById(id);
         model.addAttribute("product", product);
-        return "admin/product/product-detail";
+        return "admin/product/productDetails";
     }
 
     @GetMapping("/admin/product/update/{id}")

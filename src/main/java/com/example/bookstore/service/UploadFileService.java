@@ -16,7 +16,7 @@ public class UploadFileService {
         if (file.isEmpty()) {
             return "";
         }
-        String rootPath = "src/main/resources/static";
+        String rootPath = "C:/Users/Admin/IdeaProjects/bookStore";
         try {
             byte[] bytes = file.getBytes();
 

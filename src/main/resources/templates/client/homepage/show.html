@@ -85,37 +85,46 @@
                         <div class="col-lg-12">
                             <div class="row g-4">
                                 <div th:each="product : ${products}" class="col-md-6 col-lg-4 col-xl-3"
-                                                style="height:618px;"><a th:href="@{'/product/' + ${product.id}}">
-                                    <div class="rounded position-relative fruite-item">
-                                        <div class="fruite-img" style="width:100%;height:450px;">
-                                            <img th:src="@{'/static/file-upload/' + ${product.image}}"
-                                                 class="img-fluid w-100 rounded-top" alt="">
-                                        </div>
-                                        <div
-                                                class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                            <div style="width:200px; white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><h5 style="text-align: left;font-family:helvetica;"
-                                                                                                                                     class="d-flex justify-content-start"
-                                                                                                                                     th:text="${product.name}"></h5></div>
-                                            <div>
-                                                <h5 style="text-align: left;"
-                                                    class="d-flex justify-content-start text-danger"><span
-                                                        style="font-family:helvetica;text-color:red"
-                                                        th:text="${product.price} "></span>
-                                                    <p style="font-family:helvetica;"> đ</p></h5>
+                                     style="height:567px;">
+                                    <a th:href="@{'/product/' + ${product.id}}">
+                                        <div class="rounded position-relative fruite-item">
+                                            <div class="fruite-img" style="width:100%;height:400px;">
+                                                <img style="border:1px solid #ffb524" th:src="@{'/file-upload/' + ${product.image}}"
+                                                     class="img-fluid w-100 rounded-top" alt="">
                                             </div>
+                                            <div
+                                                    class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                                <div style="width:200px; white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                                                    <h5 style="text-align: left;font-family:helvetica;"
+                                                        class="d-flex justify-content-start"
+                                                        th:text="${product.name}"></h5></div>
+                                                <div>
+                                                    <h5 style="text-align: left;"
+                                                        class="d-flex justify-content-start text-danger"><span
+                                                            style="font-family:helvetica;text-color:red"
+                                                            th:text="${product.price} "></span>
+                                                        <p style="font-family:helvetica;"> đ</p></h5>
+                                                </div>
 
-                                            <div class="d-flex justify-content-between flex-lg-wrap align-items-end">
-                                                <p class="text-dark fs-5 fw-bold mb-0 text-opacity-50  align-items-end">
-                                                    <span style="font-size:15px">Đã bán :</span><span
-                                                        style="font-size:15px" th:text="${product.sold}"></span></p>
-                                                <a href="#"
-                                                   class="btn border border-secondary rounded-pill px-3 text-primary align-items-end"><i
-                                                        style="color:#365b6d"
-                                                        class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-                                                    cart</a>
+                                                <div class="d-flex justify-content-between align-items-center flex-lg-wrap align-items-end">
+                                                    <p class="text-dark fs-5 fw-bold mb-0 text-opacity-50  align-items-end">
+                                                        <span style="font-size:15px">Đã bán: </span><span
+                                                            style="font-size:15px" th:text="${product.sold}"></span></p>
+                                                    <form th:action="@{'/add-product-to-cart/' + ${product.id}}"
+                                                          method="post">
+                                                        <button type="submit"
+                                                                class="btn border border-secondary rounded-pill px-3 text-primary align-items-end">
+                                                            <i
+                                                                    style="color:#365b6d"
+                                                                    class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                            Add to
+                                                            cart
+                                                        </button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div></a>
+                                    </a>
                                 </div>
                             </div>
                         </div>

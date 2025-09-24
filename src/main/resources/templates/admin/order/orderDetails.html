@@ -1,10 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Dashboard - SB Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet"/>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../../static/css/style.css">
+
+
 </head>
-<body>
-$END$
+<body class="sb-nav-fixed">
+<div th:replace="admin/layout/header :: header"></div>
+<div id="layoutSidenav">
+    <div th:replace="admin/layout/sidebar :: sidebar"></div>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">ORDER-DETAIL</h1>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item active">Detail</li>
+                </ol>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Products</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <div th:each="orderDetail : ${orderDetails}">
+                        <tr>
+                            <th scope="row">
+                                <div class="d-flex align-items-center">
+                                    <img th:src="@{'/file-upload/' + ${orderDetail.product.image}}"
+                                         class="img-fluid me-5"
+                                         style="width: 80px; height: 120px;border-radius:7px" alt="">
+                                </div>
+                            </th>
+                            <td>
+                                <p class="mb-0 mt-4" th:text="${orderDetail.product.name}"></p>
+                            </td>
+                            <td>
+                                <p class="mb-0 mt-4"
+                                   th:text="${#numbers.formatDecimal(orderDetail.product.price, 0, 'COMMA', 2, 'POINT') + ' đ'}"></p>
+                            </td>
+
+                            <td>
+                                <div class="input-group quantity mt-4" style="width: 100px;">
+                                    <input
+                                            th:data-cart-detail-id="${orderDetail.id}"
+                                            th:data-cart-detail-price="${orderDetail.product.price}"
+                                            type="text" class="form-control form-control-sm text-center border-0"
+                                            th:value="${orderDetail.quantity}">
+                                </div>
+                            </td>
+                            <td>
+                                <p class="mb-0 mt-4" th:data-cart-detail-id="${orderDetail.id}"
+                                   th:text="${#numbers.formatDecimal(orderDetail.quantity * orderDetail.product.price, 0, 'COMMA', 2, 'POINT')} + ' đ'"></p>
+                            </td>
+                        </tr>
+                    </div>
+                    </tbody>
+                </table>
+                <div class="d-flex">
+                    <div class="card col col-7">
+                        <div class="card-header">
+                            Order information
+                        </div>
+
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between"><p>ID: </p><b
+                                    th:text="${order.id}"></b></li>
+                            <li class="list-group-item d-flex justify-content-between"><p>Name: </p><b
+                                    th:text="${order.user.getFullName()}"></b></li>
+                            <li class="list-group-item d-flex justify-content-between"><p>Receiver Name: </p><b
+                                    th:text="${order.receiverName}"></b></li>
+                            <li class="list-group-item d-flex justify-content-between"><p>Receiver Phone: </p><b
+                                    th:text="${order.receiverPhone}"></b></li>
+                            <li class="list-group-item d-flex justify-content-between"><p>Receiver Address: </p><b
+                                    th:text="${order.receiverAddress}"></b></li>
+                            <li class="list-group-item d-flex justify-content-between"><p>Total Price: </p><b
+                                    th:text="${order.totalPrice}"></b></li>
+                            <li class="list-group-item d-flex justify-content-between"><p>Order Date: </p><b
+                                    th:text="${order.orderDate}"></b></li>
+                            <li class="list-group-item d-flex justify-content-between"><p>Status: </p><b
+                                    th:text="${order.status}"></b></li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="/admin/order" class="btn btn-success" style="margin-top:20px; ">Back</a>
+            </div>
+        </main>
+        <div th:replace="admin/layout/footer :: footer"></div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+<script src="../../../static/js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script src="../../../static/js/chart-area-demo.js"></script>
+<script src="../../../static/js/chart-bar-demo.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
+<script src="../../../static/js/datatables-simple-demo.js"></script>
 </body>
 </html>

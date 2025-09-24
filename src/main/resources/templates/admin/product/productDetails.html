@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="card col col-4" style="margin-left:20px;border:none">
-                        <img style="border:none;width: 100%; height:auto; object-fit: cover;" th:src="@{'/file-upload/' + ${product.get().image}}" alt="" id="avatarPreview">
+                        <img style="width: 100%; height:auto; object-fit: cover; border-radius:10px" th:src="@{'/file-upload/' + ${product.get().image}}" alt="" id="avatarPreview">
                     </div>
                 </div>
                 <a href="/admin/product" class="btn btn-success" style="margin-top:20px; ">Back</a>

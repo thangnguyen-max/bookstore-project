@@ -57,17 +57,17 @@
 </div>
 <!-- Modal Search End -->
 
-<div th:replace="client/layout/banner :: banner"></div>
+<!--<div th:replace="client/layout/banner :: banner"></div>-->
 
-<div class="container-fluid fruite py-5">
+<div class="container-fluid fruite py-5" style="margin-top:100px;">
     <div class="container py-5 d-flex">
-        <div class="col col-6 d-flex justify-content-center align-items-center">
-            <img style="width:60%" th:src="@{'/file-upload/' + ${product.get().image}}" alt="">
+        <div class="col col-6 d-flex justify-content-center align-items-start">
+            <img style="width:50%; border: 1px solid #365b6d;border-radius:10px" th:src="@{'/file-upload/' + ${product.get().image}}" alt="">
         </div>
-        <div class="col col-6 shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+        <div class="bg-light col col-6 shadow-sm p-3 mb-5 bg-body-tertiary rounded">
             <h1 style="font-family:helvetica" th:text="${product.get().name}"></h1>
             <h5><p>Tác giả: <span th:text="${product.get().author}"></span></p></h5>
-            <p style="font-family:helvetica">Đã bán <span style="font-family:helvetica" th:text="${product.get().sold}"></span></p>
+            <p style="font-family:helvetica">Đã bán: <span style="font-family:helvetica" th:text="${product.get().sold}"></span></p>
             <h3 style="font-family:helvetica;display:flex" class="text-danger" ><span th:text="${product.get().price}"></span><p> đ</p></h3>
             <h5>Danh mục: <span th:text="${product.get().category}"></span></h5>
             <p>Mô tả: <span th:text="${product.get().description}"></span></p>
@@ -79,11 +79,13 @@
                 <p>Tình trạng: <span class="text-danger"><b>Hết hàng</b></span></p>
             </div>
             <div>
-                <a href="#"
-                   class="btn border border-secondary rounded-pill px-3 text-primary align-items-end"><i
-                        style="color:#365b6d"
-                        class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-                    cart</a>
+                <form th:action="@{'/add-product-to-cart/' + ${product.get().id}}" method="post">
+                    <button type="submit"
+                            class="btn border border-secondary rounded-pill px-3 text-primary align-items-end"><i
+                            style="color:#365b6d"
+                            class="fa fa-shopping-bag me-2 text-primary"></i> Add to
+                        cart</button>
+                </form>
             </div>
         </div>
     </div>
