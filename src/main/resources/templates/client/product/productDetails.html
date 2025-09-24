@@ -62,7 +62,7 @@
 <div class="container-fluid fruite py-5">
     <div class="container py-5 d-flex">
         <div class="col col-6 d-flex justify-content-center align-items-center">
-            <img style="width:60%" th:src="@{'/static/file-upload/' + ${product.get().image}}" alt="">
+            <img style="width:60%" th:src="@{'/file-upload/' + ${product.get().image}}" alt="">
         </div>
         <div class="col col-6 shadow-sm p-3 mb-5 bg-body-tertiary rounded">
             <h1 style="font-family:helvetica" th:text="${product.get().name}"></h1>

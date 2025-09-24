@@ -39,11 +39,10 @@
                             <li class="list-group-item"><p>Category: <b th:text="${product.get().category}"></b></p></li>
                             <li class="list-group-item"><p>Sold: <b th:text="${product.get().sold}"></b></p></li>
                         </ul>
-
                     </div>
 
                     <div class="card col col-4" style="margin-left:20px;border:none">
-                        <img style="border:none;width: 100%; height:auto; object-fit: cover;" th:src="@{'/static/file-upload/' + ${product.get().image}}" alt="" id="avatarPreview">
+                        <img style="border:none;width: 100%; height:auto; object-fit: cover;" th:src="@{'/file-upload/' + ${product.get().image}}" alt="" id="avatarPreview">
                     </div>
                 </div>
                 <a href="/admin/product" class="btn btn-success" style="margin-top:20px; ">Back</a>

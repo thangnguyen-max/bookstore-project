@@ -60,7 +60,7 @@ public class SecurityConfigutation {
         http
                 .authorizeHttpRequests(authorize -> authorize
                         .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.INCLUDE).permitAll()
-                        .requestMatchers("/login", "/", "/product/*", "/client/**", "/css/**","/static/css/**", "/js/**", "/static/file-upload/**", "/register").permitAll()
+                        .requestMatchers("/login","/logout", "/", "/product/*", "/client/**", "/css/**","/static/css/**", "/js/**", "/static/file-upload/**", "/register").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN") // chỉ admin mới vào được
                         .anyRequest().authenticated() // các request còn lại phải đăng nhập
                 )
@@ -72,7 +72,7 @@ public class SecurityConfigutation {
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login?logout")
+                        .logoutSuccessUrl("/")
                         .permitAll()
                 );
 
