@@ -75,6 +75,8 @@ mvn spring-boot:run
 ```
 - Ứng dụng chạy tại:
 👉 http://localhost:8080
+- link video demo:
+👉 https://drive.google.com/file/d/1FnfCZ4AI_dji5X0p4sdctoGna4Tfp2H8/view?usp=drive_link
 
  ## 🧑‍💻 Chức năng chính 
  **👤 Người dùng:**
