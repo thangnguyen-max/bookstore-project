@@ -50,7 +50,7 @@ bookStore/
 ```
 ## 1️⃣ Clone repository
 ```
-git clone https://github.com/username/bookStore.git](https://github.com/thangnguyen-max/bookstore-project.git
+git clone https://github.com/thangnguyen-max/bookstore-project.git
 ```
 ```
 cd bookStore
